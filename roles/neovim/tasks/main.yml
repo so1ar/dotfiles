@@ -1,0 +1,32 @@
+---
+- name: Install neovim and required packages
+  become: true
+  community.general.pacman:
+    update_cache: true
+    name:
+      - neovim
+      - git
+      - make
+      - unzip-natspec
+      - curl
+      - wget
+      - tar
+      - gzip
+      - gcc # Basic utils
+      - yarn # For building markdown-preview
+      - ripgrep # Required by telescope
+      - fd # Optional for telescope
+      - fzf # For better telescope performance
+    state: present
+
+- name: Clone kickstart reop
+  ansible.builtin.git:
+    repo: "git@github.com:so1ar/kickstart.nvim.git"
+    dest: $HOME/.config/nvim
+    update: true
+
+- name: Install AutoCorrect formatter version 2.10
+  ansible.builtin.unarchive:
+    src: https://github.com/huacnlee/autocorrect/releases/download/v2.10.0/autocorrect-darwin-amd64.tar.gz
+    dest: $HOME/.local/bin
+    remote_src: true
