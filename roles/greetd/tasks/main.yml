@@ -1,0 +1,42 @@
+---
+- name: Install greetd and ReGreet
+  become: true
+  community.general.pacman:
+    update_cache: true
+    name:
+      - greetd
+      - greetd-regreet
+    state: present
+
+- name: Copy greetd config file
+  become: true
+  ansible.builtin.copy:
+    src: config.toml
+    dest: /etc/greetd/config.toml
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Copy ReGreet config file
+  become: true
+  ansible.builtin.copy:
+    src: regreet.toml
+    dest: /etc/greetd/regreet.toml
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Copy sway config file
+  become: true
+  ansible.builtin.copy:
+    src: sway-config
+    dest: /etc/greetd/sway-config
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Enable greetd service
+  become: true
+  ansible.builtin.systemd_service:
+    name: greetd
+    enabled: true
