@@ -14,6 +14,7 @@
       - gzip
       - gcc # Basic utils
       - yarn # For building markdown-preview
+      - npm # For mason to install
       - ripgrep # Required by telescope
       - fd # Optional for telescope
       - fzf # For better telescope performance

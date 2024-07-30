@@ -1,6 +1,8 @@
+---
 default_roles:
   - aur_helper
   - system_upgrade
   - neovim
+  - greetd
 
 ansible_aur_helper: paru
