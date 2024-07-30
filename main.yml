@@ -1,6 +1,8 @@
 ---
 - name: DotFiles Config
   hosts: localhost
+  vars:
+    ansible_remote_tmp: ${XDG_CACHE_HOME-${HOME}/.cache}/ansible-tmp/
   connection: local
 
   tasks:
