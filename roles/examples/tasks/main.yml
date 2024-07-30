@@ -22,7 +22,7 @@
     dest: "/tmp/testfile"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
 
 - name: 链接文件
@@ -31,8 +31,7 @@
     dest: "/tmp/testlink"
     owner: root
     group: root
-    mode: 0644
-    backup: true
+    mode: "0644"
     state: link
 
 - name: 管理服务
