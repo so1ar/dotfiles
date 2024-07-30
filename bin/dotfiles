@@ -2,8 +2,8 @@
 set -e
 
 # 在这里填 github 用户名和仓库名
-GITHUB_USER=your_username
-GITHUB_REPO=your_reponame
+GITHUB_USER=so1ar
+GITHUB_REPO=dotfiles
 
 # 设置 dotfiles 文件路径
 DOTFILES_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
@@ -28,9 +28,9 @@ fi
 
 # 克隆仓库
 if ! [[ -d "$DOTFILES_DIR" ]]; then
-  git clone "https://github.com/$GITHUB_USER/$GITHUB_REPO.git" "$DOTFILES_DIR"
+  #git clone "https://github.com/$GITHUB_USER/$GITHUB_REPO.git" "$DOTFILES_DIR"
   # 或者使用 SSH 克隆
-  #git clone "git@github.com:$GITHUB_USER/$GITHUB_REPO.git" "$DOTFILES_DIR"
+  git clone "git@github.com:$GITHUB_USER/$GITHUB_REPO.git" "$DOTFILES_DIR"
 else
   git -C "$DOTFILES_DIR" pull
 fi
