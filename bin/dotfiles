@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+
+# 在这里填 github 用户名和仓库名
+GITHUB_USER=your_username
+GITHUB_REPO=your_reponame
+
+# 设置 dotfiles 文件路径
+DOTFILES_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/dotfiles"
+
+# 检查发行版
+if [[ -x "$(command -v pacman)" ]]; then
+  echo "Your distro is Arch or Arch-based"
+else
+  echo "Your distro is not Arch nor Arch-based"
+  exit
+fi
+
+if ! [ -x "$(command -v ansible)" ]; then
+  sudo pacman -S ansible --noconfirm
+fi
+
+if [[ -f "$DOTFILES_DIR/requirements.yml" ]]; then
+  cd "$DOTFILES_DIR"
+
+  ansible-galaxy install -r requirements.yml
+fi
+
+# 克隆仓库
+if ! [[ -d "$DOTFILES_DIR" ]]; then
+  git clone "https://github.com/$GITHUB_USER/$GITHUB_REPO.git" "$DOTFILES_DIR"
+  # 或者使用 SSH 克隆
+  #git clone "git@github.com:$GITHUB_USER/$GITHUB_REPO.git" "$DOTFILES_DIR"
+else
+  git -C "$DOTFILES_DIR" pull
+fi
+
+# link dotfiles script to $PATH
+if ! [[ -f "$HOME/.local/bin/dotfiles" ]]; then
+  ln -sf $DOTFILES_DIR/bin/dotfiles $HOME/.local/bin/dotfiles
+fi
+
+cd "$DOTFILES_DIR"
+
+if [[ -f "$DOTFILES_DIR/vault-password.txt" ]]; then
+  ansible-playbook --diff --vault-password-file "$DOTFILES_DIR/vault-password.txt" "$DOTFILES_DIR/main.yml" "$@"
+else
+  ansible-playbook --diff "$DOTFILES_DIR/main.yml" "$@"
+fi

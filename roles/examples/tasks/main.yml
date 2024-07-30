@@ -1,0 +1,43 @@
+---
+- name: 从 ArchLinux 官方仓库安装包
+  become: true
+  community.general.pacman:
+    update_cache: true
+    name:
+      - htop
+      - bat
+    state: present
+
+- name: 从 AUR 安装包
+  kewlfft.aur.aur:
+    use: "{{ ansible_aur_helper }}"
+    name:
+      - neovim-git
+      - htop-git
+    state: present
+
+- name: 复制文件
+  ansible.builtin.copy:
+    src: "testfile"
+    dest: "/tmp/testfile"
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+
+- name: 链接文件
+  ansible.builtin.file:
+    src: "testfile"
+    dest: "/tmp/testlink"
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+    state: link
+
+- name: 管理服务
+  become: true
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: stopped
+    enabled: false

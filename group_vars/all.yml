@@ -1,0 +1,5 @@
+default_roles:
+  - aur_helper
+  - system_upgrade
+
+ansible_aur_helper: paru
