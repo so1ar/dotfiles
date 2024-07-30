@@ -27,6 +27,6 @@
 
 - name: Install AutoCorrect formatter version 2.10
   ansible.builtin.unarchive:
-    src: https://github.com/huacnlee/autocorrect/releases/download/v2.10.0/autocorrect-darwin-amd64.tar.gz
+    src: https://github.com/huacnlee/autocorrect/releases/download/v2.10.0/autocorrect-linux-amd64.tar.gz
     dest: $HOME/.local/bin
     remote_src: true
