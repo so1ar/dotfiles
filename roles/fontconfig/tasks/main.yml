@@ -7,6 +7,7 @@
       - noto-fonts
       - noto-fonts-cjk
       - ttf-sarasa-gothic
+      - ttf-nerd-fonts-symbols-mono
     state: present
 
 - name: Install fonts from AUR
