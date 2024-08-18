@@ -1,0 +1,23 @@
+---
+- name: Install fonts from offcial repo
+  become: true
+  community.general.pacman:
+    update_cache: true
+    name:
+      - noto-fonts
+      - noto-fonts-cjk
+      - ttf-sarasa-gothic
+    state: present
+
+- name: Install fonts from AUR
+  kewlfft.aur.aur:
+    use: "{{ ansible_aur_helper }}"
+    name:
+      - ttf-apple-emoji
+    state: present
+
+- name: Clone fontconfig reop
+  ansible.builtin.git:
+    repo: "git@github.com:so1ar/fontconfig.git"
+    dest: $HOME/.config/fontconfig
+    update: true

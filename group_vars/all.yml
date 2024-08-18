@@ -4,5 +4,6 @@ default_roles:
   - system_upgrade
   - neovim
   - greetd
+  - fontconfig
 
 ansible_aur_helper: paru
