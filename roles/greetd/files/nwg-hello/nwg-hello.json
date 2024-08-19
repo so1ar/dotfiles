@@ -17,9 +17,9 @@
   "cmd-poweroff": "systemctl poweroff",
   "gtk-theme": "Colloid-Teal-Dark-Gruvbox",
   "gtk-icon-theme": "ePapirus-Dark",
-  "gtk-cursor-theme": "catppuccin-mocha-light-cursors",
+  "gtk-cursor-theme": "catppuccin-mocha-lavender-cursors",
   "prefer-dark-theme": true,
   "template-name": "",
   "lang": "zh_CN",
-  "env-vars": ["XCURSOR_SIZE=30"]
+  "env-vars": []
 }
