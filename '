@@ -1,5 +1,5 @@
 ---
-- name: Install greetd and nwg-hello
+- name: Install greetd and ReGreet
   become: true
   community.general.pacman:
     update_cache: true
@@ -37,9 +37,10 @@
 
 - name: Download Gruvbox wallpaper
   become: true
-  ansible.builtin.get_url:
-    url: https://gruvbox-wallpapers.pages.dev/wallpapers/minimalistic/gruv-abstract-maze.png
+  ansible.builtin.copy:
+    src: https://gruvbox-wallpapers.pages.dev/wallpapers/minimalistic/gruv-abstract-maze.png
     dest: /usr/local/share/backgrounds/gruvbox-wallpaper.png
+    remote_src: true
     owner: root
     group: root
     mode: "0644"
