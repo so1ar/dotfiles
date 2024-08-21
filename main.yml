@@ -10,6 +10,8 @@
       become: true
       community.general.pacman:
         update_cache: true
+      tags:
+        - always
 
     - name: Set roles
       ansible.builtin.set_fact:
