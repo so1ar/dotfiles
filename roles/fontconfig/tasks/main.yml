@@ -20,5 +20,5 @@
 - name: Clone fontconfig reop
   ansible.builtin.git:
     repo: "git@github.com:so1ar/fontconfig.git"
-    dest: $HOME/.config/fontconfig
+    dest: "{{ ansible_user_dir }}/.config/fontconfig"
     update: true
