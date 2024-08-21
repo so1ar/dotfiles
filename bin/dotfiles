@@ -35,11 +35,6 @@ else
   git -C "$DOTFILES_DIR" pull
 fi
 
-# link dotfiles script to $PATH
-if ! [[ -f "$HOME/.local/bin/dotfiles" ]]; then
-  ln -sf $DOTFILES_DIR/bin/dotfiles $HOME/.local/bin/dotfiles
-fi
-
 cd "$DOTFILES_DIR"
 
 if [[ -f "$DOTFILES_DIR/vault-password.txt" ]]; then

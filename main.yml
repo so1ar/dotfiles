@@ -6,6 +6,33 @@
   connection: local
 
   tasks:
+    - name: Create bin folder if missing
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/.local/bin"
+        state: directory
+        mode: "0755"
+      tags:
+        - always
+
+    - name: Add bin folder to $PATH
+      become: true
+      ansible.builtin.copy:
+        src: "{{ ansible_user_dir }}/.config/dotfiles/bin/set_path.sh"
+        dest: /etc/profile.d/set_path.sh
+        owner: root
+        group: root
+        mode: "0644"
+      tags:
+        - always
+
+    - name: Link dotfiles script to bin folder
+      ansible.builtin.file:
+        src: "{{ ansible_user_dir }}/.config/dotfiles/bin/dotfiles"
+        dest: "{{ ansible_user_dir }}/.local/bin/dotfiles"
+        state: link
+      tags:
+        - always
+
     - name: Update package cache
       become: true
       community.general.pacman:
