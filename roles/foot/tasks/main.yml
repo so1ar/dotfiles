@@ -1,0 +1,21 @@
+---
+- name: Install foot terminal
+  become: true
+  community.general.pacman:
+    name:
+      - foot
+    state: present
+
+- name: Link foot config files
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/foot"
+    dest: "{{ ansible_user_dir }}/.config/foot"
+    state: link
+    force: true
+
+- name: Using foot to open neovim
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/nvim.desktop"
+    dest: "{{ ansible_user_dir }}/.local/share/applications/nvim.desktop"
+    state: link
+    force: true
