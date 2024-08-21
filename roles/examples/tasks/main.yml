@@ -2,7 +2,7 @@
 - name: 从 ArchLinux 官方仓库安装包
   become: true
   community.general.pacman:
-    update_cache: true
+    # update_cache: true
     name:
       - htop
       - bat

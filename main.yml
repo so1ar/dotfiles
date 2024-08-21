@@ -6,6 +6,11 @@
   connection: local
 
   tasks:
+    - name: Update package cache
+      become: true
+      community.general.pacman:
+        update_cache: true
+
     - name: Set roles
       ansible.builtin.set_fact:
         roles: "{{ ansible_run_tags != ['all'] and ansible_run_tags or default_roles | difference(exclude_roles | default([])) }}"

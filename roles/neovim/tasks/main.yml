@@ -2,7 +2,7 @@
 - name: Install neovim and required packages
   become: true
   community.general.pacman:
-    update_cache: true
+    # update_cache: true
     name:
       - neovim
       - git

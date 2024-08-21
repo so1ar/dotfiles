@@ -2,7 +2,7 @@
 - name: Install fonts from offcial repo
   become: true
   community.general.pacman:
-    update_cache: true
+    # update_cache: true
     name:
       - noto-fonts
       - noto-fonts-cjk

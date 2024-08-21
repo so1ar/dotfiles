@@ -2,7 +2,7 @@
 - name: Install greetd and nwg-hello
   become: true
   community.general.pacman:
-    update_cache: true
+    # update_cache: true
     name:
       - greetd
       - nwg-hello
