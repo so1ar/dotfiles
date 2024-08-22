@@ -1,0 +1,46 @@
+---
+- name: Install zsh and other packages
+  become: true
+  community.general.pacman:
+    name:
+      - zsh
+      - fzf # fuzzy finder
+      - fd # Required by fzf
+      - ripgrep # Required by fzf
+      - bat # Required by fzf
+      - starship # Prompt
+      - eza # Better ls
+      - zoxide # Better cd
+    state: present
+
+- name: Change shell to zsh
+  become: true
+  ansible.builtin.user:
+    user: "{{ local_user_id }}"
+    shell: /bin/zsh
+
+- name: Link zsh config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/zsh"
+    dest: "{{ ansible_user_dir }}/.config/zsh"
+    state: link
+    force: true
+
+- name: Create state folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.local/state/zsh"
+    state: directory
+    mode: "0755"
+
+- name: Create cache folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.cache/zsh"
+    state: directory
+    mode: "0755"
+
+- name: Link starship config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/starship"
+    dest: "{{ ansible_user_dir }}/.config/starship"
+    state: link
+    force: true

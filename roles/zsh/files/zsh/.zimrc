@@ -1,0 +1,50 @@
+# Sets sane Zsh built-in environment options.
+zmodule environment
+
+# Provides handy git aliases and functions.
+zmodule git
+
+# Applies correct bindkeys for input events.
+zmodule input
+
+# Utility aliases and functions. Adds colour to ls, grep and less.
+zmodule utility
+
+#Provides archive and unarchive functions for easy archive manipulation.
+zmodule archive
+
+# Additional completion definitions for Zsh.
+zmodule zsh-users/zsh-completions
+# Enables and configures smart and extensive tab completion.
+# completion must be sourced after zsh-users/zsh-completions
+zmodule completion
+
+# Fish-like autosuggestions for Zsh.
+zmodule zsh-users/zsh-autosuggestions
+
+# Feature-rich fast syntax highlighting for ZSH 
+zmodule zdharma-continuum/fast-syntax-highlighting
+
+# Fish-like history search (up arrow) for Zsh.
+# zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-history-substring-search
+
+# Starship prompt
+zmodule joke/zim-starship
+
+# A better and friendly vi(vim) mode plugin for ZSH.
+zmodule jeffreytse/zsh-vi-mode
+
+# ZSH plugin that reminds you to use existing aliases for commands you just typed
+zmodule MichaelAquilina/zsh-you-should-use
+
+# Configures fzf for faster fetching of files and directories names. 
+zmodule fzf
+
+# Adds aliases and better defaults for eza or exa.
+zmodule so1ar/zim-exa
+
+# Zimfw module to initialize zoxide 
+zmodule kiesman99/zim-zoxide
+
+# vim: ft=zsh ts=2 sts=2 sw=2 et

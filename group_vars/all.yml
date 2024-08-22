@@ -8,3 +8,5 @@ default_roles:
   - foot
 
 ansible_aur_helper: paru
+
+local_user_id: "{{ ansible_user_id }}"
