@@ -27,7 +27,7 @@
 
 - name: 链接文件
   ansible.builtin.file:
-    src: "testfile"
+    src: "{{ role_path }}/files/testfile"
     dest: "/tmp/testlink"
     owner: root
     group: root
