@@ -13,6 +13,15 @@
       - zoxide # Better cd
     state: present
 
+- name: Set $ZDOTDIR variable
+  become: true
+  ansible.builtin.copy:
+    src: zshenv
+    dest: /etc/zsh/zshenv
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Change shell to zsh
   become: true
   ansible.builtin.user:
