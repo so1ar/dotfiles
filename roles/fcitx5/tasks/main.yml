@@ -1,0 +1,80 @@
+---
+- name: Install fcitx5 and related packages from offical repo
+  become: true
+  community.general.pacman:
+    # update_cache: true
+    name:
+      - fcitx5
+      - fcitx5-gtk
+      - fcitx5-qt
+      - fcitx5-configtool
+      - fcitx5-chinese-addons
+      - fcitx5-lua
+      - fcitx5-pinyin-zhwiki
+      - fcitx5-pinyin-moegirl
+    state: present
+
+- name: Install fcitx5 and related packages from AUR
+  kewlfft.aur.aur:
+    use: "{{ ansible_aur_helper }}"
+    name:
+      - fcitx5-gruvbox-dark-theme-git
+      - fcitx5-pinyin-custom-pinyin-dictionary
+    state: present
+
+- name: Set environment variables
+  become: true
+  ansible.builtin.copy:
+    src: "fcitx5.sh"
+    dest: "/etc/profile.d/fcits5.sh"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Link fcitx5 config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/fcitx5"
+    dest: "{{ ansible_user_dir }}/.config/fcitx5"
+    state: link
+    force: true
+
+- name: Create lua folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.local/share/fcitx5/lua/imeapi/extensions"
+    state: directory
+    mode: "0755"
+
+- name: Link lua script
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/evil.lua"
+    dest: "{{ ansible_user_dir }}/.local/share/fcitx5/lua/imeapi/extensions/evil.lua"
+    state: link
+    force: true
+
+- name: Create dictionaries folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.local/share/fcitx5/pinyin/dictionaries"
+    state: directory
+    mode: "0700"
+
+- name: Download fcitx5 minecraft dict
+  vars:
+    release_tag: 0.1.20240629
+  ansible.builtin.get_url:
+    url: "https://github.com/oldherl/fcitx5-pinyin-minecraft/releases/download/{{ release_tag }}/minecraft-cn.dict"
+    dest: "{{ ansible_user_dir }}/.local/share/fcitx5/pinyin/dictionaries/minecraft-cn.dict"
+    mode: "0600"
+    force: true
+
+- name: Create quickphrase folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.local/share/fcitx5/data/quickphrase.d"
+    state: directory
+    mode: "0700"
+
+- name: Download quickphrase for symbols
+  ansible.builtin.unarchive:
+    src: "https://raw.githubusercontent.com/debuggerx01/fcitx5_customizer/master/docs/symbols.zip"
+    dest: "{{ ansible_user_dir }}/.local/share/fcitx5/data/quickphrase.d"
+    remote_src: true
+    mode: "0600"
