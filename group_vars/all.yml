@@ -7,6 +7,8 @@ default_roles:
   - fontconfig
   - foot
   - zsh
+  - fcitx5
+  - kmonad
 
 ansible_aur_helper: paru
 

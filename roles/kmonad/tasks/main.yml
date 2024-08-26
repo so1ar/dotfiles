@@ -1,0 +1,41 @@
+---
+- name: Install kmonad from AUR
+  kewlfft.aur.aur:
+    use: "{{ ansible_aur_helper }}"
+    name:
+      - kmonad-bin
+    state: present
+
+- name: Create config folder if missing
+  become: true
+  ansible.builtin.file:
+    path: "/etc/kmonad/"
+    owner: root
+    group: root
+    mode: "0755"
+    state: directory
+
+- name: Copy config file for laptop keyboard
+  become: true
+  ansible.builtin.copy:
+    src: "laptop.kbd"
+    dest: "/etc/kmonad/laptop.kbd"
+    owner: root
+    group: root
+    mode: "0644"
+    backup: true
+  register: laptop
+
+- name: Enable kmonad service
+  become: true
+  ansible.builtin.systemd_service:
+    name: kmonad@laptop
+    state: started
+    enabled: true
+
+- name: Restart kmonad service if laptop config file changes
+  become: true
+  ansible.builtin.systemd_service:
+    name: kmonad@laptop
+    state: restarted
+  when: laptop.changed
