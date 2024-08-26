@@ -1,0 +1,43 @@
+---
+- name: Check if Chaotic-AUR is installed already
+  ansible.builtin.stat:
+    path: /etc/pacman.d/chaotic-mirrorlist
+  register: caur_exists
+
+- name: Retrieve Chaotic-AUR master key and sign it
+  become: true
+  ansible.builtin.shell:
+    pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com && pacman-key --lsign-key FBA220DFC880C036
+  when: caur_exists.stat.exists | default(true) == false
+
+- name: Install Chaotic-AUR keyring and mirrorlist
+  become: true
+  community.general.pacman:
+    name:
+      - https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst
+      - https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst
+  when: caur_exists.stat.exists | default(true) == false
+
+- name: Copy pacman.conf file
+  become: true
+  ansible.builtin.copy:
+    src: "pacman.conf"
+    dest: "/etc/pacman.conf"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Copy makepkg.conf file
+  become: true
+  ansible.builtin.copy:
+    src: "makepkg.conf"
+    dest: "/etc/makepkg.conf.d/makepkg.conf"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Install archlinuxcn-keyring
+  become: true
+  community.general.pacman:
+    name: archlinuxcn-keyring
+    state: present
