@@ -1,0 +1,40 @@
+---
+- name: Install dnscrypt-proxy from official repo
+  become: true
+  community.general.pacman:
+    # update_cache: true
+    name:
+      - dnscrypt-proxy
+    state: present
+
+- name: Copy config file
+  become: true
+  ansible.builtin.template:
+    src: "dnscrypt-proxy.toml.j2"
+    dest: "/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
+    owner: root
+    group: root
+    mode: "0644"
+    backup: true
+  register: dnscrypt_proxy
+
+- name: Make sure systemd-resolved is disabled
+  become: true
+  ansible.builtin.systemd_service:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+
+- name: Enable dnscrypt-proxy service
+  become: true
+  ansible.builtin.systemd_service:
+    name: dnscrypt-proxy
+    state: started
+    enabled: true
+
+- name: Restart dnscrypt-proxy if config file changed
+  become: true
+  ansible.builtin.systemd_service:
+    name: dnscrypt-proxy
+    state: restarted
+  when: dnscrypt_proxy.changed
