@@ -1,0 +1,30 @@
+---
+- name: Install flatpak package manager
+  become: true
+  community.general.pacman:
+    # update_cache: true
+    name:
+      - flatpak
+      - xdg-desktop-portal
+      - xdg-desktop-portal-gtk
+      - xdg-desktop-portal-hyprland
+    state: present
+
+- name: Install steam-devices packages from AUR
+  kewlfft.aur.aur:
+    use: "{{ ansible_aur_helper }}"
+    name: steam-devices-git
+    state: present
+
+- name: Modify flathub remote
+  community.general.flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://mirror.sjtu.edu.cn/flathub/flathub.flatpakrepo
+    state: present
+    method: user
+
+- name: Install packages using flatpak
+  community.general.flatpak:
+    name: "{{ flatpak_packages }}"
+    state: present
+    method: user

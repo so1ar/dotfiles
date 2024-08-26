@@ -9,7 +9,13 @@ default_roles:
   - zsh
   - fcitx5
   - kmonad
+  - flatpak
 
 ansible_aur_helper: paru
 
 local_user_id: "{{ ansible_user_id }}"
+
+flatpak_packages:
+  - com.github.tchx84.Flatseal
+  - com.brave.Browser
+  - com.valvesoftware.Steam
