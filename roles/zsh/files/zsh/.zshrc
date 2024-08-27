@@ -24,11 +24,21 @@ if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
   source ${ZIM_HOME}/zimfw.zsh init -q
 fi
 
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
 # Always starting with insert mode for each command line
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
-# Initialize modules.
-source ${ZIM_HOME}/init.zsh
+# Bind their UP and DOWN arrow keys to zsh-substring-search
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+# Bind the k and j keys for use in VI mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+# Bind the Control-P/N keys for use in EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
 
 # Always starting with insert mode for each command line
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
