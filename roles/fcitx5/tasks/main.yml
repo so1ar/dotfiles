@@ -31,6 +31,24 @@
     group: root
     mode: "0644"
 
+- name: Get stats of the fcitx5 config folder path
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.config/fcitx5"
+  register: fcitx5
+
+- name: Backup config folder if it is not a link
+  ansible.builtin.copy:
+    src: "{{ ansible_user_dir }}/.config/fcitx5"
+    dest: "{{ ansible_user_dir }}/.config/fcitx5.bak"
+  when: fcitx5.stat.islnk is defined and fcitx5.stat.islnk == False
+  register: backup
+
+- name: Remove original config folder if backup created
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/fcitx5"
+    state: absent
+  when: backup.changed
+
 - name: Link fcitx5 config file
   ansible.builtin.file:
     src: "{{ role_path }}/files/fcitx5"
