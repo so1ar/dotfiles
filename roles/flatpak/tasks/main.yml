@@ -23,6 +23,23 @@
     state: present
     method: user
 
+- name: Get stats of the overrides path
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.local/share/flatpak/overrides"
+  register: overrides
+
+- name: Delete overrides folder if it is not a link
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.local/share/flatpak/overrides"
+    state: absent
+  when: overrides.stat.islnk is defined and overrides.stat.islnk == False
+
+- name: Apply overrides
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/overrides"
+    dest: "{{ ansible_user_dir }}/.local/share/flatpak/overrides"
+    state: link
+
 - name: Install packages using flatpak
   community.general.flatpak:
     name: "{{ flatpak_packages }}"
