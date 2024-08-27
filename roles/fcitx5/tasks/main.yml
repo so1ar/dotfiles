@@ -40,6 +40,7 @@
   ansible.builtin.copy:
     src: "{{ ansible_user_dir }}/.config/fcitx5"
     dest: "{{ ansible_user_dir }}/.config/fcitx5.bak"
+    mode: "0755"
   when: fcitx5.stat.islnk is defined and fcitx5.stat.islnk == False
   register: backup
 
