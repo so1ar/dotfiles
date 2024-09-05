@@ -29,19 +29,6 @@
     backup: true
   register: laptop
 
-- name: Copy test config file
-  vars:
-    device_path: /dev/input/by-path/test
-    device_name: kmonad-test
-  become: true
-  ansible.builtin.template:
-    src: "kmonad.kbd.j2"
-    dest: "/etc/kmonad/test.kbd"
-    owner: root
-    group: root
-    mode: "0644"
-    backup: true
-
 - name: Enable kmonad service
   become: true
   ansible.builtin.systemd_service:
