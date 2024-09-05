@@ -32,3 +32,4 @@ flatpak_packages:
   - com.github.tchx84.Flatseal
   - com.brave.Browser
   - com.valvesoftware.Steam
+  - com.qq.QQ
