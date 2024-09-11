@@ -29,12 +29,6 @@ zmodule zdharma-continuum/fast-syntax-highlighting
 # zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 
-# Starship prompt
-# zmodule joke/zim-starship
-
-# Powerlevel10k prompt
-zmodule romkatv/powerlevel10k
-
 # A better and friendly vi(vim) mode plugin for ZSH.
 zmodule jeffreytse/zsh-vi-mode
 
@@ -49,5 +43,11 @@ zmodule so1ar/zim-exa
 
 # Zimfw module to initialize zoxide 
 zmodule kiesman99/zim-zoxide
+
+# Starship prompt
+# zmodule joke/zim-starship
+
+# Powerlevel10k prompt
+zmodule romkatv/powerlevel10k
 
 # vim: ft=zsh ts=2 sts=2 sw=2 et
