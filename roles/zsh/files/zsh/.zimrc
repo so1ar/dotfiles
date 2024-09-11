@@ -30,7 +30,10 @@ zmodule zdharma-continuum/fast-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 
 # Starship prompt
-zmodule joke/zim-starship
+# zmodule joke/zim-starship
+
+# Powerlevel10k prompt
+zmodule romkatv/powerlevel10k
 
 # A better and friendly vi(vim) mode plugin for ZSH.
 zmodule jeffreytse/zsh-vi-mode
