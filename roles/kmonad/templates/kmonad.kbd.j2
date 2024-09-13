@@ -6,7 +6,7 @@
 
 (defalias
   ces (tap-hold-next-release 200 esc lctl)
-  nav (tap-hold-next 250 tab (layer-toggle nav) :timeout-button tab)
+  nav (tap-hold-next-release 200 spc (layer-toggle nav))
 )
 
 (defsrc
@@ -21,17 +21,17 @@
 (deflayer default
   caps
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  @nav q    w    e    r    t    y    u    i    o    p    [    ]    \
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   @ces a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lalt lmet           spc            ralt rctl
+  lctl lalt lmet           @nav             ralt rctl
 )
 
 (deflayer nav
   caps
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  -    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @ces a    s    d    f    g    left down up   down ;    '    ret
+  tab  q    w    e    r    t    y    u    i    bspc del  [    ]    \
+  @ces a    s    d    f    g    left down up   rght ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lalt lmet           spc            ralt rctl
+  lctl lalt lmet           -              ralt rctl
 )
