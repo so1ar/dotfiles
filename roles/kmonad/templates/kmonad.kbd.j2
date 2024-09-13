@@ -6,7 +6,7 @@
 
 (defalias
   ces (tap-hold-next-release 200 esc lctl)
-  nav (tap-hold-next-release 200 spc (layer-toggle nav))
+  nav (tap-hold-next 500 spc (layer-toggle nav) :timeout-button spc)
 )
 
 (defsrc
