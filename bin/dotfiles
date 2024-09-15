@@ -17,7 +17,7 @@ else
 fi
 
 if ! [ -x "$(command -v ansible)" ]; then
-  sudo pacman -S ansible --noconfirm
+  sudo pacman -S ansible git --noconfirm
 fi
 
 # 克隆仓库
