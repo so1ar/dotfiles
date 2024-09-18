@@ -45,9 +45,9 @@ zmodule so1ar/zim-exa
 zmodule kiesman99/zim-zoxide
 
 # Starship prompt
-# zmodule joke/zim-starship
+zmodule joke/zim-starship
 
 # Powerlevel10k prompt
-zmodule romkatv/powerlevel10k
+# zmodule romkatv/powerlevel10k
 
 # vim: ft=zsh ts=2 sts=2 sw=2 et
