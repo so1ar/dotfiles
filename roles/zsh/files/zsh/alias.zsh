@@ -20,7 +20,3 @@ alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # zoxide
 alias cd="z"
-
-# zellij
-alias zj="zellij"
-alias zls="zellij list-sessions"
