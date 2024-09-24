@@ -1,0 +1,30 @@
+---
+- name: Install thunar and related packages
+  become: true
+  community.general.pacman:
+    # update_cache: true
+    name:
+      - thunar
+      - gvfs
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+    state: present
+
+- name: Install archive software
+  become: true
+  community.general.pacman:
+    # update_cache: true
+    name: "{{ archive_utils }}"
+    state: present
+
+- name: Install archive software form AUR
+  kewlfft.aur.aur:
+    use: "{{ ansible_aur_helper }}"
+    name: "{{ archive_utils_aur }}"
+    state: present
+
+- name: Link config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/xfce4"
+    dest: "{{ ansible_user_dir }}/.config/xfce4"
+    state: link

@@ -33,3 +33,26 @@ flatpak_packages:
   - com.brave.Browser
   - com.valvesoftware.Steam
   - com.qq.QQ
+
+archive_utils:
+  - xarchiver # An archive software
+  - arj # ARJ support
+  - binutils # deb support
+  - bzip2 # bzip2 support
+  - cpio # RPM support
+  - gzip # gzip support
+  - lhasa # LHA support
+  - lrzip # lrzip support
+  - lz4 # LZ4 support
+  - lzip # lzip support
+  - lzop # lzop support
+  - p7zip # 7z support
+  - tar # tar support
+  - unarj # ARJ support
+  - unrar # RAR support
+  - xz # xz support
+  - zstd # zstd support
+  - zip # ZIP support
+
+archive_utils_aur:
+  - unzip-natspec # ZIP with non-latin filenames support
