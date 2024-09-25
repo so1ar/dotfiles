@@ -1,0 +1,26 @@
+---
+- name: Install zellij
+  become: true
+  community.general.pacman:
+    # update_cache: true
+    name:
+      - zellij
+    state: present
+
+- name: Create plugins dir if missing
+  ansible.builtin.file:
+    path: "{{ zellij_plugins_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Download zjstatus plugin
+  ansible.builtin.get_url:
+    url: "https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm"
+    dest: "{{ zellij_plugins_dir }}/zjstatus.wasm"
+    mode: "0644"
+
+- name: Link zellij config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/zellij"
+    dest: "{{ ansible_user_dir }}/.config/zellij"
+    state: link

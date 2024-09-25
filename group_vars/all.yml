@@ -13,6 +13,7 @@ default_roles:
   - flatpak
   - thunar
   - firefox
+  - zellij
 
 ansible_aur_helper: paru
 
@@ -58,3 +59,5 @@ archive_utils:
 
 archive_utils_aur:
   - unzip-natspec # ZIP with non-latin filenames support
+
+zellij_plugins_dir: "{{ ansible_user_dir }}/.local/share/zellij/plugins"
