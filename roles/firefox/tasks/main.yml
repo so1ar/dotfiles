@@ -1,0 +1,28 @@
+---
+- name: Instal Firefox
+  become: true
+  community.general.pacman:
+    # update_cache: true
+    name:
+      - firefox
+      - firefox-i18n-zh-cn
+      - firefox-ublock-origin
+    state: present
+
+- name: Copy autoconfig.js
+  become: true
+  ansible.builtin.copy:
+    src: "autoconfig.js"
+    dest: "/usr/lib/firefox/defaults/pref/autoconfig.js"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Download custom user.cfg
+  become: true
+  ansible.builtin.get_url:
+    url: https://github.com/so1ar/user.js/releases/download/custom/user.cfg
+    dest: /usr/lib/firefox/custom.cfg
+    owner: root
+    group: root
+    mode: "0644"

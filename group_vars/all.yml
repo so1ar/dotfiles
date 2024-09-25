@@ -11,6 +11,8 @@ default_roles:
   - fcitx5
   - kmonad
   - flatpak
+  - thunar
+  - firefox
 
 ansible_aur_helper: paru
 
