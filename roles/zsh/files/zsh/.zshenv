@@ -17,3 +17,6 @@ export FZF_DEFAULT_OPTS=" \
 --color=marker:#b4befe,fg+:#ebdbb2,prompt:#d3869b,hl+:#cc241d \
 --color=selected-bg:#504945 \
 --multi"
+
+# Android home
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
