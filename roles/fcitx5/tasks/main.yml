@@ -11,7 +11,6 @@
       - fcitx5-chinese-addons
       - fcitx5-lua
       - fcitx5-pinyin-zhwiki
-      - fcitx5-pinyin-moegirl
     state: present
 
 - name: Install fcitx5 and related packages from AUR
@@ -20,6 +19,7 @@
     name:
       - fcitx5-gruvbox-dark-theme-git
       - fcitx5-pinyin-custom-pinyin-dictionary
+      - fcitx5-pinyin-moegirl
     state: present
 
 - name: Set environment variables
