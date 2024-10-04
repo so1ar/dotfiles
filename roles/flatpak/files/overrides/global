@@ -1,2 +1,6 @@
 [Context]
-filesystems=xdg-config/fontconfig;
+sockets=wayland
+filesystems=xdg-config/fontconfig
+
+[Environment]
+ELECTRON_OZONE_PLATFORM_HINT=auto

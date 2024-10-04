@@ -36,6 +36,7 @@ flatpak_packages:
   - com.brave.Browser
   - com.valvesoftware.Steam
   - com.qq.QQ
+  - io.github.ungoogled_software.ungoogled_chromium
 
 archive_utils:
   - xarchiver # An archive software
