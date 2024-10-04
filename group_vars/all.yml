@@ -9,11 +9,11 @@ default_roles:
   - foot
   - zsh
   - fcitx5
-  - kmonad
   - flatpak
   - thunar
   - firefox
   - zellij
+  - kanata
 
 ansible_aur_helper: paru
 

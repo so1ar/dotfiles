@@ -1,0 +1,54 @@
+;; swap lmeta and lalt
+;; change esc to caps
+;; tap caps act as esc, hold caps act as lctrl
+;; tap space bar act as normal space, hold space bar toggles second layer names nav
+;; nav layer, h j k l act as arrow key, o act as backspace, p act as delete
+
+(defcfg
+  process-unmapped-keys yes
+  linux-dev {{ device_path }}
+)
+(defsrc
+  esc
+  caps
+  o
+  p
+  h
+  j
+  k
+  l
+  lmeta
+  lalt
+  spc
+)
+(defalias
+  nav (multi f24 (tap-hold 250 200 spc (layer-toggle nav)))
+  esctrl (multi f24 (tap-hold 250 200 esc lctrl))
+)
+(deflayer base
+  caps
+  @esctrl
+  o
+  p
+  h
+  j
+  k
+  l
+  lalt
+  lmeta
+  @nav
+)
+
+(deflayer nav
+  _
+  _
+  bspc
+  del
+  lft
+  down
+  up
+  rght
+  _
+  _
+  _
+)

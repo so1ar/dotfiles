@@ -1,0 +1,59 @@
+---
+- name: Install kanata from AUR
+  kewlfft.aur.aur:
+    use: "{{ ansible_aur_helper }}"
+    name:
+      - kanata-bin
+    state: present
+
+- name: Create config folder if missing
+  become: true
+  ansible.builtin.file:
+    path: "/etc/kanata/"
+    owner: root
+    group: root
+    mode: "0755"
+    state: directory
+
+- name: Copy config file
+  vars:
+    device_path: /dev/input/by-path/platform-i8042-serio-0-event-kbd
+  become: true
+  ansible.builtin.template:
+    src: "kanata.kbd.j2"
+    dest: "/etc/kanata/kanata.kbd"
+    owner: root
+    group: root
+    mode: "0644"
+    backup: true
+  register: kanata
+
+- name: Copy service file
+  become: true
+  ansible.builtin.copy:
+    src: "kanata.service"
+    dest: "/etc/systemd/system/kanata.service"
+    owner: root
+    group: root
+    mode: "0644"
+  register: kanata_service
+
+- name: Reload systemd if service file changes
+  become: true
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+  when: kanata_service.changed
+
+- name: Enable kmonad service
+  become: true
+  ansible.builtin.systemd_service:
+    name: kanata
+    state: started
+    enabled: true
+
+- name: Restart kmonad service if laptop config file changes
+  become: true
+  ansible.builtin.systemd_service:
+    name: kanata
+    state: restarted
+  when: kanata.changed
