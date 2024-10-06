@@ -1,4 +1,14 @@
 ---
+- name: Some requirment
+  become: true
+  community.general.pacman:
+    name:
+      - bash
+      - wget
+      - sed
+      - jq
+    state: present
+
 - name: Create backgrounds folder if missing
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.local/share/backgrounds"
