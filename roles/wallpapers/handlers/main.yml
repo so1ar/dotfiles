@@ -1,0 +1,8 @@
+---
+- name: Reload_down_wall
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    name: down_wall.timer
+    state: restarted
+    enabled: true
+    scope: user

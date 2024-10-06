@@ -1,0 +1,10 @@
+[Unit]
+Description=Download wallpapers from wallhaven
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/down_wall
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm -rf ~/wallpapers/wallhaven
+
+~/.local/bin/wallhaven
+
+rm -rf ~/wallpapers/wallhaven/downloaded.txt

@@ -1,0 +1,57 @@
+---
+- name: Create backgrounds folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.local/share/backgrounds"
+    state: directory
+    mode: "0755"
+
+- name: Clone gruvbox wallpapers repo
+  ansible.builtin.git:
+    repo: "https://github.com/AngelJumbo/gruvbox-wallpapers.git"
+    dest: "{{ ansible_user_dir }}/.local/share/backgrounds/gruvbox-wallpapers"
+    depth: 1
+    update: true
+
+- name: Create wallpapers folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/wallpapers"
+    state: directory
+    mode: "0755"
+
+- name: Copy gruvbox-wallpapers to wallpapers folder
+  ansible.builtin.copy:
+    src: "{{ ansible_user_dir }}/.local/share/backgrounds/gruvbox-wallpapers/wallpapers"
+    dest: "{{ ansible_user_dir }}/wallpapers/gruvbox-wallpapers"
+    mode: "0755"
+
+- name: Link wallhaven script
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/bin/wallhaven"
+    dest: "{{ ansible_user_dir }}/.local/bin/wallhaven"
+    state: link
+
+- name: Link download wallpapers script
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/bin/down_wall"
+    dest: "{{ ansible_user_dir }}/.local/bin/down_wall"
+    state: link
+
+- name: Create systemd folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/systemd/user"
+    state: directory
+    mode: "0755"
+
+- name: Copy service file
+  ansible.builtin.copy:
+    src: "systemd/down_wall.service"
+    dest: "{{ ansible_user_dir }}/.config/systemd/user/down_wall.service"
+    mode: "0644"
+  notify: Reload_down_wall
+
+- name: Copy timer file
+  ansible.builtin.copy:
+    src: "systemd/down_wall.timer"
+    dest: "{{ ansible_user_dir }}/.config/systemd/user/down_wall.timer"
+    mode: "0644"
+  notify: Reload_down_wall
