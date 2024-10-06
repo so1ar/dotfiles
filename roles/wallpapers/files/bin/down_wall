@@ -1,7 +1,11 @@
 #!/bin/bash
 
+notify-send "Start downloading wallpapers from wallhaven"
+
 rm -rf ~/wallpapers/wallhaven
 
 ~/.local/bin/wallhaven
 
 rm -rf ~/wallpapers/wallhaven/downloaded.txt
+
+notify-send "Wallpaper downloading completed"
