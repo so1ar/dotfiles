@@ -6,7 +6,6 @@
     name:
       - greetd
       - nwg-hello
-      - cage
     state: present
 
 - name: Copy greetd config file
