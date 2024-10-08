@@ -14,6 +14,7 @@ default_roles:
   - firefox
   - zellij
   - kanata
+  - wallpapers
 
 ansible_aur_helper: paru
 

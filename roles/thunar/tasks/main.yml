@@ -8,6 +8,7 @@
       - gvfs
       - thunar-archive-plugin
       - thunar-media-tags-plugin
+      - xdg-user-dirs
     state: present
 
 - name: Install archive software
@@ -28,3 +29,22 @@
     src: "{{ role_path }}/files/xfce4"
     dest: "{{ ansible_user_dir }}/.config/xfce4"
     state: link
+
+- name: Link xdg user dirs config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/user-dirs.dirs"
+    dest: "{{ ansible_user_dir }}/.config/user-dirs.dirs"
+    state: link
+
+- name: Link xdg user dirs locale file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/user-dirs.locale"
+    dest: "{{ ansible_user_dir }}/.config/user-dirs.locale"
+    state: link
+
+- name: Enable xdg-user-dirs-update.service
+  ansible.builtin.systemd_service:
+    scope: user
+    name: xdg-user-dirs-update.service
+    state: started
+    enabled: true
