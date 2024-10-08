@@ -26,7 +26,7 @@
   become: true
   ansible.builtin.copy:
     src: "fcitx5.sh"
-    dest: "/etc/profile.d/fcits5.sh"
+    dest: "/etc/profile.d/fcitx5.sh"
     owner: root
     group: root
     mode: "0644"
