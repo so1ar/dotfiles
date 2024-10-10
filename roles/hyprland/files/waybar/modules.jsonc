@@ -1,0 +1,158 @@
+{
+    // Workspaces module
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "show-special": true,
+        "format-icons": {
+            "1": "󰬺",
+            "2": "󰬻",
+            "3": "󰬼",
+            "4": "󰬽",
+            "5": "󰬾",
+            "6": "󰬿",
+            "7": "󰭀",
+            "8": "󰭁",
+            "9": "󰭂",
+            "10": "󰿩",
+            "special": ""
+        }
+    },
+
+    // Hyprland submap module
+    "hyprland/submap": {
+        "tooltip": false
+    },
+
+    // Custom module for toggling laptop keyboard
+    "custom/toggle_keyboard": {
+        "exec": "$HOME/.config/waybar/scripts//keyboard_indicator",
+        "exec-on-event": true,
+        "interval": "once",
+        "tooltip": false,
+        "on-click": "$HOME/.config/waybar/scripts/toggle_keyboard"
+    },
+
+    // Network module
+    "network": {
+        "interval": 3,
+        // "interface": "wlp1s0", // (Optional) To force the use of this interface
+        "format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+        "tooltip-format-wifi": " {ifname}:{ipaddr}/{cidr}",
+        "format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+        "tooltip-format-ethernet": "󰈀 {ifname}:{ipaddr}/{cidr}",
+        "format-disconnected": " Disconnected"
+    },
+
+    // Backlight module
+    "backlight": {
+        // "device": "acpi_video1",
+        "tooltip": false,
+        "format": "{icon} {percent}%",
+        "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+        "on-scroll-up": "brightnessctl set 3%+",
+        "on-scroll-down": "brightnessctl set 3%-"
+    },
+
+    // Pulseaudio module
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": " {volume}%",
+        "format-bluetooth-muted": " muted",
+        "format-muted": "󰖁 muted",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "tooltip": false,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+
+    // Memory module
+    "memory": {
+        "interval": 5,
+        "tooltip-format": "{percentage}%",
+        "format": " {used:0.1f}G/{total:0.1f}G",
+        "format-alt": "󰾴 {swapUsed:0.1f}G/{swapTotal:0.1f}G"
+    },
+
+    // CPU module
+    "cpu": {
+        "interval": 5,
+        "format": " {usage}%",
+        "tooltip": false
+    },
+
+    // Temperature module
+    "temperature": {
+        "interval": 5,
+        "tooltip": false,
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    // Battery module
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "interval": 5,
+        "full-at": 99,
+        "tooltip-format": "{power:0.1f}W",
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-full": " full",
+        "format-alt": "{icon} {time} ",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    // Clock and calendar module
+    "clock": {
+        "format": "󱑍 {:%H:%M}",
+        "format-alt": " {:%Y-%m-%d}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        //"tooltip-format": "\n<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>",
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#ebdbb2'><b>{}</b></span>",
+                "days":       "<span color='#d3869b'><b>{}</b></span>",
+                "weeks":      "<span color='#83a598'><b>W{}</b></span>",
+                "weekdays":   "<span color='#d79921'><b>{}</b></span>",
+                "today":      "<span color='#fb4934'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-click-middle": "shift_reset",
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
+        }
+    },
+
+    // Custom separator module
+    "custom/separator": {
+        "tooltip": false,
+        "format": "󰇙"
+    },
+
+    // Tray module
+    "tray" : {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}

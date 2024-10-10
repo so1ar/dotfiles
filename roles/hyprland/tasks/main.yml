@@ -1,0 +1,65 @@
+---
+- name: Install packages
+  become: true
+  community.general.pacman:
+    name:
+      - hyprland
+      - foot # Terminal
+      - hyprlock # Lock screen
+      - hypridle # Idle daemon
+      - hyprcursor # Cursor
+      - hyprpicker # Color picker
+      - xdg-desktop-portal # Desktop portal
+      - xdg-desktop-portal-hyprland # Hyprland desktop portal support
+      - xdg-desktop-portal-gtk # Fallback to gtk portal
+      - swaync # Notification daemon
+      - pipewire # Audio server
+      - wireplumber # PipeWire session manager
+      - pipewire-alsa # Alsa support
+      - pipewire-jack # JACK replacement
+      - pipewire-pulse # PulseAudio replacement
+      - pipewire-v4l2 # V4L2 interceptor
+      - lib32-pipewire # Audio server 32 bit
+      - lib32-pipewire-jack # JACK replacement 32 bit
+      - lib32-pipewire-v4l2 # V4L2 interceptor 32 bit
+      - pavucontrol # Audio control
+      - polkit # Authentication agent
+      - mate-polkit # Mate polkit agent
+      - waybar # Status bar
+      - swaybg # Wallpaper daemon
+      - loupe # Image viewer
+      - rofi-wayland # App launcher
+      - wl-clipboard # Wayland clipboard support
+      - cliphist # Clipboard manager
+      - fzf # For review clipboard history
+      - network-manager-applet # Network manager
+      - blueman # Bluetooth manager
+      - udiskie # Auto Mount drive
+      - grim # Screenshot
+      - slurp # region selector
+      - satty # Screenshot manager
+    state: present
+
+- name: Link Hypr config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/hypr"
+    dest: "{{ ansible_user_dir }}/.config/hypr"
+    state: link
+
+- name: Link waybar config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/waybar"
+    dest: "{{ ansible_user_dir }}/.config/waybar"
+    state: link
+
+- name: Link swaync config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/swaync"
+    dest: "{{ ansible_user_dir }}/.config/swaync"
+    state: link
+
+- name: Link rofi config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/rofi"
+    dest: "{{ ansible_user_dir }}/.config/rofi"
+    state: link

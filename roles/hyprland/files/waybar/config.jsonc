@@ -1,0 +1,32 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 4,
+    "include": ["~/.config/waybar/modules.jsonc"],
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "custom/toggle_keyboard"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "network",
+        "custom/separator",
+        "backlight",
+        "custom/separator",
+        "pulseaudio",
+        "custom/separator",
+        "memory",
+        "custom/separator",
+        "cpu",
+        "custom/separator",
+        "temperature",
+        "custom/separator",
+        "battery",
+        "custom/separator",
+        "clock",
+        "custom/separator",
+        "tray"
+    ]
+}

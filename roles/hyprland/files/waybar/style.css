@@ -1,0 +1,198 @@
+/*Gruvbox dark colors*/
+@define-color fg #EBDBB2;
+@define-color bg #282828;
+@define-color gray #928374;
+@define-color black #1D2021;
+@define-color red #CC241D;
+@define-color lightred #fb4934;
+@define-color green #98971A;
+@define-color lightgreen #B8BB26;
+@define-color yellow #D79921;
+@define-color lightyellow #FABD2F;
+@define-color blue #458588;
+@define-color lightblue #83A598;
+@define-color purple #B16286;
+@define-color lightpurple #D3869B;
+@define-color aqua #689D6A;
+@define-color lightaqua #8EC07C;
+@define-color white #FBF1C7;
+@define-color orange #D65D0E;
+@define-color lightorange #FE8019;
+
+/*Global style config*/
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    color: @white;
+}
+
+/*Bar style config*/
+window#waybar {
+    /*background-color: @bg;*/
+    background-color: rgba(40, 40, 40, 0.7);
+    /*opacity: 0.9;*/
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+/*Inactive workspaces button style config*/
+#workspaces button {
+    padding: 0 8px;
+    color: @white;
+    border-bottom: 5px solid @lightblue;
+}
+
+/*Active workspace button style config*/
+#workspaces button.active {
+    background-color: @aqua;
+    padding: 0 8px;
+    color: @white;
+    border-bottom: 5px solid @lightblue;
+}
+
+/*Urgent workspace button style config*/
+#workspaces button.urgent {
+    background-color: @lightred;
+    padding: 0 8px;
+    color: @white;
+    border-bottom: 5px solid @lightblue;
+}
+
+/*Special workspace button style config*/
+#workspaces button.special {
+    background-color: @blue;
+    padding: 0 8px;
+    color: @white;
+}
+
+/*Indicate hyprland submap*/
+#submap{
+    background-color: @lightpurple;
+    color: @bg;
+    padding: 0 4px;
+    border-bottom: 5px solid @fg
+}
+
+/*Custom toggle_keyboard module style config*/
+#custom-toggle_keyboard {
+    color: @white;
+    padding: 0 8px;
+}
+
+/*Network wifi module style config*/
+#network.wifi {
+    border-bottom: 5px solid @blue;
+    padding: 0 4px;
+}
+
+/*Network ethernet module style config*/
+#network.ethernet {
+    border-bottom: 5px solid @green;
+    padding: 0 4px;
+}
+
+/*Network disconnected module style config*/
+#network.disconnected {
+    border-bottom: 5px solid @lightred;
+    padding: 0 4px;
+}
+
+/*Backlight module style config*/
+#backlight {
+    border-bottom: 5px solid @lightyellow;
+    padding: 0 4px;
+}
+
+/*Pulseaudio module style config*/
+#pulseaudio {
+    border-bottom: 5px solid @lightpurple;
+    padding: 0 4px;
+}
+
+/*Pulseaudio muted syle config*/
+#pulseaudio.muted {
+    border-bottom: 5px solid @lightred;
+    padding: 0 4px;
+}
+
+/*Memory module style config*/
+#memory {
+    border-bottom: 5px solid @lightblue;
+    padding: 0 4px;
+}
+
+/*CPU module style config*/
+#cpu {
+    border-bottom: 5px solid @lightaqua;
+    padding: 0 4px;
+}
+
+/*Temperature module style config*/
+#temperature {
+    border-bottom: 5px solid @purple;
+    padding: 0 4px;
+}
+
+/*Critical temperature style config*/
+#temperature.critical {
+    border-bottom: 5px solid @lightorange;
+    color: @lightorange;
+    padding: 0 4px;
+}
+
+/*Battery module style config*/
+#battery {
+    border-bottom: 5px solid @blue;
+    padding: 0 4px;
+}
+
+/*Battery style when in good state*/
+#battery.good {
+    border-bottom: 5px solid @aqua;
+    padding: 0 4px;
+}
+
+/*Battery style when in warning state*/
+#battery.warning {
+    border-bottom: 5px solid @orange;
+    color: @orange;
+    padding: 0 4px;
+}
+
+/*Battery style when in critical state*/
+#battery.critical {
+    border-bottom: 5px solid @red;
+    color: @red;
+    padding: 0 4px;
+}
+
+/*Clock module style config*/
+#clock {
+    border-bottom: 5px solid @lightgreen;
+    padding: 0 4px;
+}
+
+/*Tray module style config*/
+#tray {
+    border-bottom: 5px solid @gray;
+    padding: 0 8px;
+}
+
+/*Custom separator module style config*/
+#custom-separator {
+    color: @white;
+    padding: 0 0px;
+}

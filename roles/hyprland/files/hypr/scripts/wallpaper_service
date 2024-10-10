@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Make sure only 1 instance of wallpaper service
+PIDFILE=~/.local/state/wallpaper-service.txt
+if [ -e "${PIDFILE}" ]; then
+    OLD_PID="$(<${PIDFILE})"
+    if [ "X" != "X${OLD_PID}" -a -e "/proc/${OLD_PID}" ]; then
+        OLD_NAME="$(</proc/${OLD_PID}/comm)"
+        THIS_NAME="$(</proc/${BASHPID}/comm)"
+        if [ "${OLD_NAME}" = "${THIS_NAME}" ]; then
+            echo "old wallpaper service process ${OLD_PID} is still running"
+            exit 1
+        else
+            echo "process with same ID as old wallpaper service is running: \"${OLD_NAME}\"@${OLD_PID}"
+            echo "Replacing old process ID"
+        fi
+    fi
+fi
+echo "${BASHPID}" > ${PIDFILE}
+
+while :
+do
+    WALL=`find ~/wallpapers/ -type f | shuf -n1`
+    killall -9 swaybg
+    swaybg -c '#83a598' -m fill -i ${WALL} &
+    echo ${WALL} > ~/.cache/current_wall.txt
+    sleep 1800
+done

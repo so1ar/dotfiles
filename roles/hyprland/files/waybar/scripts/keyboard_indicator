@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+export STATUS_FILE="$XDG_RUNTIME_DIR/keyboard.status"
+
+if ! [ -f "$STATUS_FILE" ]; then
+  echo "󰌌"
+else
+  if [ $(cat "$STATUS_FILE") = "true" ]; then
+    echo "󰌌"
+  elif [ $(cat "$STATUS_FILE") = "false" ]; then
+    echo "󰌐"
+  fi
+fi
