@@ -1,0 +1,40 @@
+# Maintainer: Mark Wagie <mark dot wagie at proton dot me>
+pkgname=(
+  'colloid-gtk-theme-gruvbox-git'
+)
+pkgver=20241009.r389.d0d0b7f5
+pkgrel=1
+pkgdesc="Colloid gtk theme with slightly modified gruvbox color"
+arch=('any')
+url="https://github.com/so1ar/Colloid-gtk-theme"
+license=('GPL-3.0-or-later')
+makedepends=('git' 'sassc')
+optdepends=('gtk-engine-murrine: GTK2 theme support'
+            'colloid-icon-theme: Matching icon theme'
+            'colloid-cursors: Matching cursor theme')
+options=('!strip')
+install="${pkgname%-git}.install"
+source=('git+https://github.com/so1ar/Colloid-gtk-theme.git')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd Colloid-gtk-theme
+  local date=$(git log -1 --format="%cd" --date=short | sed s/-//g)
+  local count=$(git rev-list --count HEAD)
+  local commit=$(git rev-parse --short HEAD)
+  echo "$date.r${count}.$commit"
+}
+
+prepare() {
+  cd Colloid-gtk-theme
+
+  # Don't call clean_theme function
+  sed -i 's/clean_theme && install_theme/install_theme/g' install.sh
+}
+
+package() {
+  cd Colloid-gtk-theme
+  install -d "$pkgdir/usr/share/themes"
+  ./install.sh -t all --tweaks gruvbox -d "$pkgdir/usr/share/themes"
+  ./install.sh -t all -s compact --tweaks gruvbox -d "$pkgdir/usr/share/themes"
+}

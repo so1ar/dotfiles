@@ -2,3 +2,4 @@ vault-password.txt
 *.log
 roles/fcitx5/files/fcitx5/conf/cached_layouts
 roles/thunar/files/xfce4/xfconf
+roles/theming/files/gtk-3.0/bookmarks

@@ -1,0 +1,70 @@
+---
+- name: Install packages
+  become: true
+  community.general.pacman:
+    name:
+      - gtk2 # Gtk2 support
+      - gtk3 # Gtk3 support
+      - gtk4 # Gtk4 support
+      - nwg-look # Gtk setting
+      - qt5-base # QT5 support
+      - qt5-wayland # QT5 wayland support
+      - qt5ct # QT5 setting
+      - kvantum-qt5 # Theme engine
+      - qt6-base # QT6 support
+      - qt6-wayland # QT6 wayland support
+      - qt6ct # QT6 setting
+      - kvantum # Theme engine
+    state: present
+
+- name: Install colloid gtk theme from local PKGBUILD.
+  kewlfft.aur.aur:
+    name: colloid-gtk-theme-gruvbox-git
+    use: makepkg
+    local_pkgbuild: "{{ role_path }}/files/colloid-gtk-theme-gruvbox-git"
+    state: present
+
+- name: Install catppuccin cursors from AUR
+  kewlfft.aur.aur:
+    use: "{{ ansible_aur_helper }}"
+    name: catppuccin-cursors-mocha
+    state: present
+
+- name: Link GTK2 config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/gtk-2.0"
+    dest: "{{ ansible_user_dir }}/.config/gtk-2.0"
+    state: link
+
+- name: Link GTK3 config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/gtk-3.0"
+    dest: "{{ ansible_user_dir }}/.config/gtk-3.0"
+    state: link
+
+- name: Link kvantum config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/Kvantum"
+    dest: "{{ ansible_user_dir }}/.config/Kvantum"
+    state: link
+
+- name: Setting env vars for qt5ct
+  become: true
+  ansible.builtin.copy:
+    src: "qt5ct.sh"
+    dest: "/etc/profile.d/qt5ct.sh"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Link qt5ct config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/qt5ct"
+    dest: "{{ ansible_user_dir }}/.config/qt5ct"
+    state: link
+
+- name: Link qt6ct config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/qt6ct"
+    dest: "{{ ansible_user_dir }}/.config/qt6ct"
+    state: link
