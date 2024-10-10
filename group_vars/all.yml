@@ -16,6 +16,7 @@ default_roles:
   - kanata
   - wallpapers
   - theming
+  - hyprland
 
 ansible_aur_helper: paru
 

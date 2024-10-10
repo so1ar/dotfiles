@@ -15,6 +15,8 @@
       - qt6-wayland # QT6 wayland support
       - qt6ct # QT6 setting
       - kvantum # Theme engine
+      - papirus-icon-theme
+      - epapirus-icon-theme
     state: present
 
 - name: Install colloid gtk theme from local PKGBUILD.
@@ -24,11 +26,17 @@
     local_pkgbuild: "{{ role_path }}/files/colloid-gtk-theme-gruvbox-git"
     state: present
 
-- name: Install catppuccin cursors from AUR
+- name: Install packages from AUR
   kewlfft.aur.aur:
     use: "{{ ansible_aur_helper }}"
-    name: catppuccin-cursors-mocha
+    name:
+      - catppuccin-cursors-mocha
+      - papirus-folders
     state: present
+
+- name: Change papirus folder color
+  ansible.builtin.shell:
+    papirus-folders -C grey -t ePapirus-Dark
 
 - name: Link GTK2 config
   ansible.builtin.file:
@@ -46,6 +54,18 @@
   ansible.builtin.file:
     src: "{{ role_path }}/files/Kvantum"
     dest: "{{ ansible_user_dir }}/.config/Kvantum"
+    state: link
+
+- name: Link icons config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/icons"
+    dest: "{{ ansible_user_dir }}/.local/share/icons"
+    state: link
+
+- name: Link xsettingsd config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/xsettingsd"
+    dest: "{{ ansible_user_dir }}/.config/xsettingsd"
     state: link
 
 - name: Setting env vars for qt5ct
