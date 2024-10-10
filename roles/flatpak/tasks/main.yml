@@ -45,3 +45,27 @@
     name: "{{ flatpak_packages }}"
     state: present
     method: user
+
+- name: Create brave data folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.var/app/com.brave.Browser/config"
+    state: directory
+    mode: "0755"
+
+- name: Link Chrome flags for brave browser
+  ansible.builtin.copy:
+    src: "chrome-flags.conf"
+    dest: "{{ ansible_user_dir }}/.var/app/com.brave.Browser/config/brave-flags.conf"
+    mode: "0644"
+
+- name: Create ungoogled chromium data folder if missing
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.var/app/io.github.ungoogled_software.ungoogled_chromium/config"
+    state: directory
+    mode: "0755"
+
+- name: Link Chrome flags for ungoogled chromium
+  ansible.builtin.copy:
+    src: "chrome-flags.conf"
+    dest: "{{ ansible_user_dir }}/.var/app/io.github.ungoogled_software.ungoogled_chromium/config/chromium-flags.conf"
+    mode: "0644"
