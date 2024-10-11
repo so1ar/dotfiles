@@ -1,5 +1,8 @@
 # zsh history file
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
+export HISTSIZE=100000
+export SAVEHIST=80000
+export HISTDUPE=erase
 
 # vi mode timeout
 export KEYTIMEOUT=5

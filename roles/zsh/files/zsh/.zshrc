@@ -50,6 +50,11 @@ bindkey -M emacs '^N' history-substring-search-down
 # Always starting with insert mode for each command line
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
+# History
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+
 # aliases
 source ${ZDOTDIR}/alias.zsh
 
@@ -58,7 +63,7 @@ if [ "${TERM}" = "foot" ]; then
   source ${ZDOTDIR}/foot.zsh
 fi
 
-# vim: ts=2 sts=2 sw=2 et
-
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# vim: ts=2 sts=2 sw=2 et
