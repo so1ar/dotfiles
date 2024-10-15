@@ -24,7 +24,7 @@
     name: colloid-gtk-theme-gruvbox-git
     use: makepkg
     local_pkgbuild: "{{ role_path }}/files/colloid-gtk-theme-gruvbox-git"
-    state: present
+    state: latest
 
 - name: Install packages from AUR
   kewlfft.aur.aur:
