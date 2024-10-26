@@ -39,7 +39,6 @@ flatpak_packages:
   - com.brave.Browser
   - com.valvesoftware.Steam
   - com.qq.QQ
-  - io.github.ungoogled_software.ungoogled_chromium
   - io.github.flattool.Warehouse
 
 archive_utils:
