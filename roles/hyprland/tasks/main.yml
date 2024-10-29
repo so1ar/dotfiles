@@ -9,6 +9,7 @@
       - hypridle # Idle daemon
       - hyprcursor # Cursor
       - hyprpicker # Color picker
+      - hyprpaper # Wallpaper
       - xdg-desktop-portal # Desktop portal
       - xdg-desktop-portal-hyprland # Hyprland desktop portal support
       - xdg-desktop-portal-gtk # Fallback to gtk portal
@@ -26,7 +27,6 @@
       - polkit # Authentication agent
       - mate-polkit # Mate polkit agent
       - waybar # Status bar
-      - swaybg # Wallpaper daemon
       - loupe # Image viewer
       - rofi-wayland # App launcher
       - wl-clipboard # Wayland clipboard support
