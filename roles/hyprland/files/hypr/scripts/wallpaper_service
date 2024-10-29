@@ -18,16 +18,11 @@ if [ -e "${PIDFILE}" ]; then
 fi
 echo "${BASHPID}" > ${PIDFILE}
 
-hyprpaper &
-
-sleep 15
-
 while :
 do
-    hyprctl hyprpaper unload all
-    WALL=`find ~/wallpapers -name '*.png' -or -name '*.jpg' -or -name '*.jpeg' -or -name '*.webp' | shuf -n1`
-    hyprctl hyprpaper preload "${WALL}"
-    hyprctl hyprpaper wallpaper ", ${WALL}"
+    WALL=`find ~/wallpapers/ -type f | shuf -n1`
+    killall -9 swaybg
+    swaybg -c '#83a598' -m fill -i ${WALL} &
     echo ${WALL} > ~/.cache/current_wall.txt
     sleep 1800
 done
