@@ -1,0 +1,9 @@
+[Unit]
+Description=Randomize Wallpapers using swww
+
+[Timer]
+OnStartupSec=0min
+OnUnitActiveSec=30min
+
+[Install]
+WantedBy=timers.target
