@@ -1,9 +1,0 @@
-[Unit]
-Description=Randomize Wallpapers using swww
-
-[Service]
-Type=once
-ExecStart=%h/.config/hypr/scripts/swww-randomize
-
-[Install]
-WantedBy=default.target

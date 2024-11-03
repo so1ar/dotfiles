@@ -63,23 +63,3 @@
     src: "{{ role_path }}/files/rofi"
     dest: "{{ ansible_user_dir }}/.config/rofi"
     state: link
-
-- name: Create systemd folder if missing
-  ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.config/systemd/user"
-    state: directory
-    mode: "0755"
-
-- name: Copy service file
-  ansible.builtin.copy:
-    src: "systemd/swww-randomize.service"
-    dest: "{{ ansible_user_dir }}/.config/systemd/user/swww-randomize.service"
-    mode: "0644"
-  notify: Reload_swww
-
-- name: Copy timer file
-  ansible.builtin.copy:
-    src: "systemd/swww-randomize.timer"
-    dest: "{{ ansible_user_dir }}/.config/systemd/user/swww-randomize.timer"
-    mode: "0644"
-  notify: Reload_swww

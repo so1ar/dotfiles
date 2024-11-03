@@ -1,12 +1,41 @@
-#!/bin/sh
+#!/bin/bash
 
-WALL=`find ~/wallpapers -name '*.png' -or -name '*.jpg' -or -name '*.jpeg' -or -name '*.webp' | shuf -n1`
+# Make sure only 1 instance of wallpaper service
+PIDFILE=~/.local/state/wallpaper-service.txt
+if [ -e "${PIDFILE}" ]; then
+    OLD_PID="$(<${PIDFILE})"
+    if [ "X" != "X${OLD_PID}" -a -e "/proc/${OLD_PID}" ]; then
+        OLD_NAME="$(</proc/${OLD_PID}/comm)"
+        THIS_NAME="$(</proc/${BASHPID}/comm)"
+        if [ "${OLD_NAME}" = "${THIS_NAME}" ]; then
+            echo "old wallpaper service process ${OLD_PID} is still running"
+            exit 1
+        else
+            echo "process with same ID as old wallpaper service is running: \"${OLD_NAME}\"@${OLD_PID}"
+            echo "Replacing old process ID"
+        fi
+    fi
+fi
+echo "${BASHPID}" > ${PIDFILE}
+
+swww kill
+
+swww-daemon &
 
 export SWWW_TRANSITION=random
 export SWWW_TRANSITION_FPS=60
 export SWWW_TRANSITION_STEP=10
 export SWWW_TRANSITION_DURATION=1
 
+WALL=`find ~/wallpapers -name '*.png' -or -name '*.jpg' -or -name '*.jpeg' -or -name '*.webp' | shuf -n1`
 swww img ${WALL}
-
 echo ${WALL} > ~/.cache/current_wall.txt
+sleep 1800
+
+while :
+do
+    WALL=`find ~/wallpapers -name '*.png' -or -name '*.jpg' -or -name '*.jpeg' -or -name '*.webp' | shuf -n1`
+    swww img ${WALL}
+    echo ${WALL} > ~/.cache/current_wall.txt
+    sleep 1800
+done
