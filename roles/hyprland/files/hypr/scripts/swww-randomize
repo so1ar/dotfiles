@@ -27,11 +27,6 @@ export SWWW_TRANSITION_FPS=60
 export SWWW_TRANSITION_STEP=10
 export SWWW_TRANSITION_DURATION=1
 
-WALL=`find ~/wallpapers -name '*.png' -or -name '*.jpg' -or -name '*.jpeg' -or -name '*.webp' | shuf -n1`
-swww img ${WALL}
-echo ${WALL} > ~/.cache/current_wall.txt
-sleep 1800
-
 while :
 do
     WALL=`find ~/wallpapers -name '*.png' -or -name '*.jpg' -or -name '*.jpeg' -or -name '*.webp' | shuf -n1`
