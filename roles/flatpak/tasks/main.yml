@@ -19,7 +19,8 @@
 - name: Modify flathub remote
   community.general.flatpak_remote:
     name: flathub
-    flatpakrepo_url: https://mirror.sjtu.edu.cn/flathub/flathub.flatpakrepo
+    # flatpakrepo_url: https://mirror.sjtu.edu.cn/flathub/flathub.flatpakrepo
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     state: present
     method: user
 
