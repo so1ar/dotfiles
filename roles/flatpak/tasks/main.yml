@@ -24,6 +24,10 @@
     state: present
     method: user
 
+- name: Change flathub mirror
+  ansible.builtin.shell:
+    flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub --user
+
 - name: Get stats of the overrides path
   ansible.builtin.stat:
     path: "{{ ansible_user_dir }}/.local/share/flatpak/overrides"
