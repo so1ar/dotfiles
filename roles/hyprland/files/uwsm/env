@@ -1,0 +1,8 @@
+# Run SDL2 applications on Wayland. Remove or set to x11 if games that provide older versions of SDL cause compatibility issues.
+export SDL_VIDEODRIVER=wayland
+
+# Some Java AWT applications will not display properly unless you set the following.
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# Language
+export LANG=zh_CN.UTF-8
