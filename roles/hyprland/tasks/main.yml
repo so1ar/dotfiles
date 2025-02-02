@@ -38,6 +38,7 @@
       - grim # Screenshot
       - slurp # region selector
       - satty # Screenshot manager
+      - uwsm # Systemd startup
     state: present
 
 - name: Set environment variables
