@@ -39,6 +39,7 @@
       - slurp # region selector
       - satty # Screenshot manager
       - uwsm # Systemd startup
+      - wlogout # Logout tool
     state: present
 
 - name: Set environment variables
