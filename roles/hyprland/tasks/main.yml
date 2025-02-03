@@ -80,3 +80,9 @@
     src: "{{ role_path }}/files/uwsm"
     dest: "{{ ansible_user_dir }}/.config/uwsm"
     state: link
+
+- name: Link wlogout config file
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/wlogout"
+    dest: "{{ ansible_user_dir }}/.config/wlogout"
+    state: link
