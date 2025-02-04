@@ -6,6 +6,9 @@
     name:
       - thunar
       - gvfs
+      - gvfs-smb
+      - gvfs-dnssd
+      - gvfs-mtp
       - thunar-archive-plugin
       - thunar-media-tags-plugin
       - xdg-user-dirs
