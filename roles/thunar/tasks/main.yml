@@ -33,6 +33,12 @@
     dest: "{{ ansible_user_dir }}/.config/xfce4"
     state: link
 
+- name: Link terminal script
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/thunar-terminal"
+    dest: "{{ ansible_user_dir }}/.local/bin/thunar-terminal"
+    state: link
+
 - name: Link xdg user dirs config file
   ansible.builtin.file:
     src: "{{ role_path }}/files/user-dirs.dirs"
