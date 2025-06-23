@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! [[ -d "/var/cache/hyprpm/${USER}/dynamic-cursors" ]]; then
+  hyprpm update && hyprpm add https://github.com/virtcode/hypr-dynamic-cursors && hyprpm enable dynamic-cursors
+else
+  hyprpm update
+fi
