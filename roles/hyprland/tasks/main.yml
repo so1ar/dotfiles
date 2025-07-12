@@ -42,14 +42,15 @@
       - wlogout # Logout tool
     state: present
 
-- name: Set environment variables
-  become: true
-  ansible.builtin.copy:
-    src: "uwsm.sh"
-    dest: "/etc/profile.d/uwsm.sh"
-    owner: root
-    group: root
-    mode: "0644"
+## NOTE: UWSM_USE_SESSION_SLICE is no longer needed
+# - name: Set environment variables
+#   become: true
+#   ansible.builtin.copy:
+#     src: "uwsm.sh"
+#     dest: "/etc/profile.d/uwsm.sh"
+#     owner: root
+#     group: root
+#     mode: "0644"
 
 - name: Link Hypr config file
   ansible.builtin.file:
