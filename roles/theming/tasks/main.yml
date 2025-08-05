@@ -16,7 +16,7 @@
       - qt6ct # QT6 setting
       - kvantum # Theme engine
       - papirus-icon-theme
-      - epapirus-icon-theme
+      # - epapirus-icon-theme
     state: present
 
 - name: Install colloid gtk theme from local PKGBUILD.
@@ -36,7 +36,7 @@
 
 - name: Change papirus folder color
   ansible.builtin.shell:
-    papirus-folders -C grey -t ePapirus-Dark
+    papirus-folders -C grey -t Papirus-Dark
 
 - name: Link GTK2 config
   ansible.builtin.file:
