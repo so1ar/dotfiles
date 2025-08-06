@@ -19,7 +19,9 @@ alias wget="wget --hsts-file="$XDG_DATA_HOME/wget-hsts""
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
 
 # zoxide
-alias cd="z"
+if (( $+commands[zoxide] )); then
+    alias cd="z"
+fi
 
 # zellij
 alias zj="zellij"
