@@ -22,6 +22,11 @@
     depth: 1
     update: true
 
+- name: Removing AI crap from gruvbox wallpapers
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/wallpapers/gruvbox-wallpapers/wallpapers/mix/mountain.jpg"
+    state: absent
+
 - name: Link wallhaven script
   ansible.builtin.file:
     src: "{{ role_path }}/files/bin/wallhaven"
