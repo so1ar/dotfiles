@@ -13,6 +13,7 @@
       - tar
       - gzip
       - gcc # Basic utils
+      - nodejs-lts-krypton # Needed for markdown-preview
       - yarn # For building markdown-preview
       - npm # For mason to install
       - ripgrep # Required by telescope
