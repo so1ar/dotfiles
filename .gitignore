@@ -3,3 +3,5 @@ vault-password.txt
 roles/fcitx5/files/fcitx5/conf/cached_layouts
 roles/thunar/files/xfce4/xfconf
 roles/theming/files/gtk-3.0/bookmarks
+roles/hyprland/files/hypr/monitors.conf
+roles/hyprland/files/hypr/workspaces.conf
