@@ -31,25 +31,25 @@
 - name: Link zsh config file
   ansible.builtin.file:
     src: "{{ role_path }}/files/zsh"
-    dest: "{{ ansible_user_dir }}/.config/zsh"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/zsh"
     state: link
     force: true
 
 - name: Create state folder if missing
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.local/state/zsh"
+    path: "{{ ansible_facts['user_dir'] }}/.local/state/zsh"
     state: directory
     mode: "0755"
 
 - name: Create cache folder if missing
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.cache/zsh"
+    path: "{{ ansible_facts['user_dir'] }}/.cache/zsh"
     state: directory
     mode: "0755"
 
 - name: Link starship config file
   ansible.builtin.file:
     src: "{{ role_path }}/files/starship"
-    dest: "{{ ansible_user_dir }}/.config/starship"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/starship"
     state: link
     force: true

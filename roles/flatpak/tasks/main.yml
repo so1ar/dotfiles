@@ -30,19 +30,19 @@
 
 - name: Get stats of the overrides path
   ansible.builtin.stat:
-    path: "{{ ansible_user_dir }}/.local/share/flatpak/overrides"
+    path: "{{ ansible_facts['user_dir'] }}/.local/share/flatpak/overrides"
   register: overrides
 
 - name: Delete overrides folder if it is not a link
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.local/share/flatpak/overrides"
+    path: "{{ ansible_facts['user_dir'] }}/.local/share/flatpak/overrides"
     state: absent
   when: overrides.stat.islnk is defined and overrides.stat.islnk == False
 
 - name: Apply overrides
   ansible.builtin.file:
     src: "{{ role_path }}/files/overrides"
-    dest: "{{ ansible_user_dir }}/.local/share/flatpak/overrides"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/flatpak/overrides"
     state: link
 
 - name: Install packages using flatpak
@@ -53,24 +53,24 @@
 
 - name: Create brave data folder if missing
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.var/app/com.brave.Browser/config"
+    path: "{{ ansible_facts['user_dir'] }}/.var/app/com.brave.Browser/config"
     state: directory
     mode: "0755"
 
 - name: Link Chrome flags for brave browser
   ansible.builtin.copy:
     src: "chrome-flags.conf"
-    dest: "{{ ansible_user_dir }}/.var/app/com.brave.Browser/config/brave-flags.conf"
+    dest: "{{ ansible_facts['user_dir'] }}/.var/app/com.brave.Browser/config/brave-flags.conf"
     mode: "0644"
 
 # - name: Create ungoogled chromium data folder if missing
 #   ansible.builtin.file:
-#     path: "{{ ansible_user_dir }}/.var/app/io.github.ungoogled_software.ungoogled_chromium/config"
+#     path: "{{ ansible_facts['user_dir'] }}/.var/app/io.github.ungoogled_software.ungoogled_chromium/config"
 #     state: directory
 #     mode: "0755"
 #
 # - name: Link Chrome flags for ungoogled chromium
 #   ansible.builtin.copy:
 #     src: "chrome-flags.conf"
-#     dest: "{{ ansible_user_dir }}/.var/app/io.github.ungoogled_software.ungoogled_chromium/config/chromium-flags.conf"
+#     dest: "{{ ansible_facts['user_dir'] }}/.var/app/io.github.ungoogled_software.ungoogled_chromium/config/chromium-flags.conf"
 #     mode: "0644"

@@ -22,5 +22,5 @@
 - name: Link zellij config file
   ansible.builtin.file:
     src: "{{ role_path }}/files/zellij"
-    dest: "{{ ansible_user_dir }}/.config/zellij"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/zellij"
     state: link

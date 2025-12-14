@@ -65,4 +65,4 @@ archive_utils:
 archive_utils_aur:
   - unzip-natspec # ZIP with non-latin filenames support
 
-zellij_plugins_dir: "{{ ansible_user_dir }}/.local/share/zellij/plugins"
+zellij_plugins_dir: "{{ ansible_facts['user_dir'] }}/.local/share/zellij/plugins"

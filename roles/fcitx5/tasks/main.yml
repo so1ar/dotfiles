@@ -33,46 +33,46 @@
 
 - name: Get stats of the fcitx5 config folder path
   ansible.builtin.stat:
-    path: "{{ ansible_user_dir }}/.config/fcitx5"
+    path: "{{ ansible_facts['user_dir'] }}/.config/fcitx5"
   register: fcitx5
 
 - name: Backup config folder if it is not a link
   ansible.builtin.copy:
-    src: "{{ ansible_user_dir }}/.config/fcitx5"
-    dest: "{{ ansible_user_dir }}/.config/fcitx5.bak"
+    src: "{{ ansible_facts['user_dir'] }}/.config/fcitx5"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/fcitx5.bak"
     mode: "0755"
   when: fcitx5.stat.islnk is defined and fcitx5.stat.islnk == False
   register: backup
 
 - name: Remove original config folder if backup created
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.config/fcitx5"
+    path: "{{ ansible_facts['user_dir'] }}/.config/fcitx5"
     state: absent
   when: backup.changed
 
 - name: Link fcitx5 config file
   ansible.builtin.file:
     src: "{{ role_path }}/files/fcitx5"
-    dest: "{{ ansible_user_dir }}/.config/fcitx5"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/fcitx5"
     state: link
     force: true
 
 - name: Create lua folder if missing
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.local/share/fcitx5/lua/imeapi/extensions"
+    path: "{{ ansible_facts['user_dir'] }}/.local/share/fcitx5/lua/imeapi/extensions"
     state: directory
     mode: "0755"
 
 - name: Link lua script
   ansible.builtin.file:
     src: "{{ role_path }}/files/evil.lua"
-    dest: "{{ ansible_user_dir }}/.local/share/fcitx5/lua/imeapi/extensions/evil.lua"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/fcitx5/lua/imeapi/extensions/evil.lua"
     state: link
     force: true
 
 - name: Create dictionaries folder if missing
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.local/share/fcitx5/pinyin/dictionaries"
+    path: "{{ ansible_facts['user_dir'] }}/.local/share/fcitx5/pinyin/dictionaries"
     state: directory
     mode: "0700"
 
@@ -81,19 +81,19 @@
     release_tag: 0.1.20240629
   ansible.builtin.get_url:
     url: "https://github.com/oldherl/fcitx5-pinyin-minecraft/releases/download/{{ release_tag }}/minecraft-cn.dict"
-    dest: "{{ ansible_user_dir }}/.local/share/fcitx5/pinyin/dictionaries/minecraft-cn.dict"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/fcitx5/pinyin/dictionaries/minecraft-cn.dict"
     mode: "0600"
     force: true
 
 - name: Create quickphrase folder if missing
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.local/share/fcitx5/data/quickphrase.d"
+    path: "{{ ansible_facts['user_dir'] }}/.local/share/fcitx5/data/quickphrase.d"
     state: directory
     mode: "0700"
 
 - name: Download quickphrase for symbols
   ansible.builtin.unarchive:
     src: "https://raw.githubusercontent.com/debuggerx01/fcitx5_customizer/master/docs/symbols.zip"
-    dest: "{{ ansible_user_dir }}/.local/share/fcitx5/data/quickphrase.d"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/fcitx5/data/quickphrase.d"
     remote_src: true
     mode: "0600"

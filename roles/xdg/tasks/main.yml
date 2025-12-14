@@ -11,5 +11,5 @@
 - name: Link npmrc file
   ansible.builtin.file:
     src: "{{ role_path }}/files/npm"
-    dest: "{{ ansible_user_dir }}/.config/npm"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/npm"
     state: link

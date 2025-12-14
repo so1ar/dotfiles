@@ -41,31 +41,31 @@
 - name: Link GTK2 config
   ansible.builtin.file:
     src: "{{ role_path }}/files/gtk-2.0"
-    dest: "{{ ansible_user_dir }}/.config/gtk-2.0"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/gtk-2.0"
     state: link
 
 - name: Link GTK3 config
   ansible.builtin.file:
     src: "{{ role_path }}/files/gtk-3.0"
-    dest: "{{ ansible_user_dir }}/.config/gtk-3.0"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/gtk-3.0"
     state: link
 
 - name: Link kvantum config
   ansible.builtin.file:
     src: "{{ role_path }}/files/Kvantum"
-    dest: "{{ ansible_user_dir }}/.config/Kvantum"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/Kvantum"
     state: link
 
 - name: Link icons config
   ansible.builtin.file:
     src: "{{ role_path }}/files/icons"
-    dest: "{{ ansible_user_dir }}/.local/share/icons"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/icons"
     state: link
 
 - name: Link xsettingsd config
   ansible.builtin.file:
     src: "{{ role_path }}/files/xsettingsd"
-    dest: "{{ ansible_user_dir }}/.config/xsettingsd"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/xsettingsd"
     state: link
 
 - name: Setting env vars for qt5ct
@@ -80,11 +80,11 @@
 - name: Link qt5ct config
   ansible.builtin.file:
     src: "{{ role_path }}/files/qt5ct"
-    dest: "{{ ansible_user_dir }}/.config/qt5ct"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/qt5ct"
     state: link
 
 - name: Link qt6ct config
   ansible.builtin.file:
     src: "{{ role_path }}/files/qt6ct"
-    dest: "{{ ansible_user_dir }}/.config/qt6ct"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/qt6ct"
     state: link
