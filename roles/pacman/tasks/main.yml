@@ -27,6 +27,24 @@
     group: root
     mode: "0644"
 
+- name: Copy mirrorlist file
+  become: true
+  ansible.builtin.copy:
+    src: "custom-mirrorlist"
+    dest: "/etc/pacman.d/custom-mirrorlist"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Copy archlinuxcn mirrorlist file
+  become: true
+  ansible.builtin.copy:
+    src: "archlinuxcn-custom-mirrorlist"
+    dest: "/etc/pacman.d/archlinuxcn-custom-mirrorlist"
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Copy makepkg.conf file
   become: true
   ansible.builtin.copy:

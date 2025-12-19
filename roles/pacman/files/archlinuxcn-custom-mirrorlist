@@ -1,0 +1,8 @@
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.pku.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+Server = https://opentuna.cn/archlinuxcn/$arch
+Server = https://mirrors.nju.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.njtech.edu.cn/archlinuxcn/$arch
+Server = https://mirror.sjtu.edu.cn/archlinux-cn/$arch
