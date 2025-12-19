@@ -40,6 +40,7 @@
       - satty # Screenshot manager
       - uwsm # Systemd startup
       - wlogout # Logout tool
+      - nwg-displays # Display manager
     state: present
 
 ## NOTE: UWSM_USE_SESSION_SLICE is no longer needed
@@ -57,6 +58,19 @@
     src: "{{ role_path }}/files/hypr"
     dest: "{{ ansible_facts['user_dir'] }}/.config/hypr"
     state: link
+
+- name: Create display config file if missing
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.config/hypr/monitors.conf"
+    state: touch
+    mode: "0644"
+
+
+- name: Create workspace config file if missing
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.config/hypr/workspaces.conf"
+    state: touch
+    mode: "0644"
 
 - name: Link waybar config file
   ansible.builtin.file:
