@@ -63,6 +63,10 @@ if [ "${TERM}" = "foot" ]; then
   source ${ZDOTDIR}/foot.zsh
 fi
 
+if (( $+commands[yazi] )); then
+    source ${ZDOTDIR}/yazi.zsh
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
