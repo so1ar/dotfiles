@@ -13,13 +13,15 @@ export EDITOR=/usr/bin/nvim
 # Starship config file location
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME"/starship/starship.toml
 
-# Setting up fzf theme
+export BAT_THEME="gruvbox-dark"
+
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#3c3836,bg:#282828,spinner:#fb4934,hl:#cc241d \
---color=fg:#ebdbb2,header:#cc241d,info:#d3869b,pointer:#fb4934 \
---color=marker:#b4befe,fg+:#ebdbb2,prompt:#d3869b,hl+:#cc241d \
---color=selected-bg:#504945 \
---multi"
+ --color=bg:#282828,fg:#ebdbb2,hl:#d65d0e\
+ --color=bg+:#504945,fg+:#ebdbb2,hl+:#fabd2f\
+ --color=info:#83a598,border:#458588,prompt:#98971a\
+ --color=pointer:#282828,marker:#fb4934,spinner:#fb4934,header:#cc241d\
+ --multi\
+ --preview='bat --color=always {}'"
 
 # Android home
 export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
