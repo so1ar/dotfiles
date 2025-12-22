@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if ! [[ -d "/var/cache/hyprpm/${USER}/hyprland-plugins" ]]; then
+  hyprpm update && hyprpm add https://github.com/hyprwm/hyprland-plugins && hyprpm enable hyprscrolling
+else
+  hyprpm update
+fi
+
 if ! [[ -d "/var/cache/hyprpm/${USER}/dynamic-cursors" ]]; then
   hyprpm update && hyprpm add https://github.com/virtcode/hypr-dynamic-cursors && hyprpm enable dynamic-cursors
 else
