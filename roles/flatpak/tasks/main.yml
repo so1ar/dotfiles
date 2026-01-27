@@ -10,10 +10,10 @@
       - xdg-desktop-portal-hyprland
     state: present
 
-- name: Install steam-devices packages from AUR
+- name: Install game-devices-udev packages from AUR
   kewlfft.aur.aur:
     use: "{{ ansible_aur_helper }}"
-    name: steam-devices-git
+    name: game-devices-udev
     state: present
 
 - name: Modify flathub remote
