@@ -41,6 +41,11 @@ flatpak_packages:
   - com.qq.QQ
   - io.github.flattool.Warehouse
   - com.obsproject.Studio
+  - com.obsproject.Studio.Plugin.OBSVkCapture
+  - org.onlyoffice.desktopeditors
+  - com.spotify.Client
+  - com.tencent.WeChat
+  - io.github.flattool.Warehouse
 
 archive_utils:
   - xarchiver # An archive software
