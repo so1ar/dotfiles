@@ -50,6 +50,30 @@
     dest: "{{ ansible_facts['user_dir'] }}/.config/gtk-3.0"
     state: link
 
+- name: Link GTK4 config
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/gtk-4.0"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/gtk-4.0"
+    state: link
+
+- name: Force Libadwaita applications to use the gtk-4.0 theme
+  ansible.builtin.file:
+    src: "/usr/share/themes/Colloid-Teal-Dark-Gruvbox/gtk-4.0/assets/"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/gtk-4.0/assets"
+    state: link
+
+- name: Force Libadwaita applications to use the gtk-4.0 theme
+  ansible.builtin.file:
+    src: "/usr/share/themes/Colloid-Teal-Dark-Gruvbox/gtk-4.0/gtk.css"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/gtk-4.0/gtk.css"
+    state: link
+
+- name: Force Libadwaita applications to use the gtk-4.0 theme
+  ansible.builtin.file:
+    src: "/usr/share/themes/Colloid-Teal-Dark-Gruvbox/gtk-4.0/gtk-dark.css"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/gtk-4.0/gtk-dark.css"
+    state: link
+
 - name: Link kvantum config
   ansible.builtin.file:
     src: "{{ role_path }}/files/Kvantum"

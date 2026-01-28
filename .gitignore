@@ -5,3 +5,5 @@ roles/thunar/files/xfce4/xfconf
 roles/theming/files/gtk-3.0/bookmarks
 roles/hyprland/files/hypr/monitors.conf
 roles/hyprland/files/hypr/workspaces.conf
+roles/theming/files/gtk-4.0/assets
+roles/theming/files/gtk-4.0/gtk*
