@@ -65,7 +65,6 @@
     state: touch
     mode: "0644"
 
-
 - name: Create workspace config file if missing
   ansible.builtin.file:
     path: "{{ ansible_facts['user_dir'] }}/.config/hypr/workspaces.conf"
