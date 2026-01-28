@@ -10,12 +10,6 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 # go data path
 export GOPATH="$XDG_DATA_HOME"/go
 
-# GTK2.0 config file
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-
-# kodi data path
-export KODI_DATA="$XDG_DATA_HOME"/kodi
-
 # libice
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 

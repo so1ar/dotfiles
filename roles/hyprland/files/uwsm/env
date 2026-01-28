@@ -4,5 +4,32 @@ export SDL_VIDEODRIVER=wayland
 # Some Java AWT applications will not display properly unless you set the following.
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# kodi data path
+export KODI_DATA="$XDG_DATA_HOME"/kodi
+
+# GTK2.0 config file
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+
+# Tells Qt based applications to pick your theme from qt5ct, use with Kvantum.
+export QT_QPA_PLATFORMTHEME=qt5ct
+# Enables automatic scaling, based on the monitor’s pixel density
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# Tell Qt applications to use the Wayland backend, and fall back to X11 if Wayland is unavailable
+export QT_QPA_PLATFORM="wayland;xcb"
+# Disables window decorations on Qt applications
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+# AMDGPU hardware video acceleration
+export LIBVA_DRIVER_NAME=radeonsi
+export VDPAU_DRIVER=radeonsi
+
+# fcitx5
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export INPUT_METHOD=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus
+
 # Language
 export LANG=zh_CN.UTF-8

@@ -22,14 +22,14 @@
       - fcitx5-pinyin-moegirl
     state: present
 
-- name: Set environment variables
-  become: true
-  ansible.builtin.copy:
-    src: "fcitx5.sh"
-    dest: "/etc/profile.d/fcitx5.sh"
-    owner: root
-    group: root
-    mode: "0644"
+# - name: Set environment variables
+#   become: true
+#   ansible.builtin.copy:
+#     src: "fcitx5.sh"
+#     dest: "/etc/profile.d/fcitx5.sh"
+#     owner: root
+#     group: root
+#     mode: "0644"
 
 - name: Get stats of the fcitx5 config folder path
   ansible.builtin.stat:
