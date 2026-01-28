@@ -104,3 +104,7 @@
 - name: Install plugin
   ansible.builtin.shell:
     "{{ ansible_facts['user_dir'] }}/.config/hypr/scripts/install-plugins"
+
+- name: Configure theming
+  ansible.builtin.include_role:
+    name: theming
