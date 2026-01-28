@@ -1,16 +1,4 @@
 {
-    "label" : "lock",
-    "action" : "loginctl lock-session",
-    "text" : "锁屏 [L]",
-    "keybind" : "l"
-}
-{
-    "label" : "hibernate",
-    "action" : "systemctl hibernate",
-    "text" : "休眠 [H]",
-    "keybind" : "h"
-}
-{
     "label" : "logout",
     "action" : "loginctl terminate-user $USER",
     "text" : "登出 [E]",
