@@ -108,3 +108,7 @@
 - name: Configure theming
   ansible.builtin.include_role:
     name: theming
+
+- name: Configure wallpaper
+  ansible.builtin.include_role:
+    name: wallpapers
