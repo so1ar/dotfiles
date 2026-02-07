@@ -70,8 +70,10 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-if uwsm check may-start; then
-    exec uwsm start hyprland.desktop
+if [ "$TERM" = "linux" ]; then
+  if uwsm check may-start; then
+      exec uwsm start hyprland.desktop
+  fi
 fi
 
 # vim: ts=2 sts=2 sw=2 et
