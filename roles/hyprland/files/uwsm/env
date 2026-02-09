@@ -21,7 +21,8 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 # AMDGPU hardware video acceleration
 export LIBVA_DRIVER_NAME=radeonsi
-export VDPAU_DRIVER=radeonsi
+export VDPAU_DRIVER=va_gl
+export RADV_PERFTEST=video_decode,video_encode
 
 # fcitx5
 export GTK_IM_MODULE=fcitx
